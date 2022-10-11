@@ -16,15 +16,25 @@ namespace R5T.F0035
 			services
 				.AddLogging(loggingBuilder =>
 				{
-					loggingBuilder
-						.SetMinimumLevel(LogLevel.Debug)
-						.AddConsole()
-						;
+					Instances.LoggingBuilderOperator.AddLogging(loggingBuilder);
 				})
 				;
 		}
 
-        public ILogger GetLogger(IServiceProvider serviceProvider, string categoryName)
+		public void AddLogging(IServiceCollection services,
+			Action<ILoggingBuilder> loggingBuilderAction)
+        {
+			this.AddLogging(services);
+
+			services
+				.AddLogging(loggingBuilder =>
+				{
+					loggingBuilderAction(loggingBuilder);
+				})
+				;
+        }
+
+		public ILogger GetLogger(IServiceProvider serviceProvider, string categoryName)
         {
 			var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
 
