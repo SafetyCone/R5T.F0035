@@ -41,5 +41,11 @@ namespace R5T.F0035
 			var logger = loggerFactory.CreateLogger(categoryName);
 			return logger;
         }
-    }
+
+		public ILogger GetLogger<T>(IServiceProvider serviceProvider)
+		{
+			var logger = serviceProvider.GetRequiredService<ILogger<T>>();
+			return logger;
+		}
+	}
 }

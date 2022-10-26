@@ -16,5 +16,11 @@ namespace System
             var logger = Instances.ServicesOperator.GetLogger(serviceProvider, categoryName);
             return logger;
         }
+
+        public static ILogger GetLogger<T>(this IServiceProvider serviceProvider)
+        {
+            var logger = Instances.ServicesOperator.GetLogger<T>(serviceProvider);
+            return logger;
+        }
     }
 }
