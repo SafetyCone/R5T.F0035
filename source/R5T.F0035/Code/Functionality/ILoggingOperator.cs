@@ -74,6 +74,24 @@ namespace R5T.F0035
             await loggerAction(logger);
         }
 
+        public async Task<TOutput> InConsoleLoggerContext<TOutput>(
+           string categoryName,
+           Func<ILogger, Task<TOutput>> loggerFunction)
+        {
+            var services = new ServiceCollection();
+
+            ServicesOperator.Instance.AddLogging(services);
+
+            using var serviceProvider = services.BuildServiceProvider();
+
+            var logger = ServicesOperator.Instance.GetLogger(
+                serviceProvider,
+                categoryName);
+
+            var output = await loggerFunction(logger);
+            return output;
+        }
+
         public TOutput InConsoleLoggerContext_Synchronous<TOutput>(
            string categoryName,
            Func<ILogger, TOutput> loggerFunction)
