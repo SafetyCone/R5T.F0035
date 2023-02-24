@@ -9,7 +9,8 @@ using R5T.T0132;
 namespace R5T.F0035
 {
 	[FunctionalityMarker]
-	public partial interface IServicesOperator : IFunctionalityMarker
+	public partial interface IServicesOperator : IFunctionalityMarker,
+		F001.IServicesOperator
 	{
 		public void AddLogging(IServiceCollection services)
 		{
@@ -33,19 +34,5 @@ namespace R5T.F0035
 				})
 				;
         }
-
-		public ILogger GetLogger(IServiceProvider serviceProvider, string categoryName)
-        {
-			var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
-
-			var logger = loggerFactory.CreateLogger(categoryName);
-			return logger;
-        }
-
-		public ILogger GetLogger<T>(IServiceProvider serviceProvider)
-		{
-			var logger = serviceProvider.GetRequiredService<ILogger<T>>();
-			return logger;
-		}
 	}
 }
