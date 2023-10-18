@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -15,9 +15,7 @@
     <RepositoryUrl>https://github.com/SafetyCone/R5T.F0035.git</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\R5T.NG0002\source\R5T.NG0002\R5T.NG0002.csproj" />
     <ProjectReference Include="..\..\..\R5T.NG0003\source\R5T.NG0003\R5T.NG0003.csproj" />
-    <ProjectReference Include="..\..\..\R5T.T0132\source\R5T.T0132\R5T.T0132.csproj" />
     <ProjectReference Include="..\R5T.F0035.F001\R5T.F0035.F001.csproj" />
   </ItemGroup>
 </Project>
